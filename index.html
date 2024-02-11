@@ -1,18 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Червоний квадрат</title>
-    <style>
-        .red-square {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Squares with Circles</title>
+<style>
+    canvas {
+        border: 1px solid black;
+    }
+</style>
 </head>
 <body>
-    <div class="red-square"></div>
+<label for="x1">Top-left (x1, y1): </label>
+<input type="text" id="x1" name="x1">
+<input type="text" id="y1" name="y1">
+<br>
+<label for="x2">Bottom-right (x2, y2): </label>
+<input type="text" id="x2" name="x2">
+<input type="text" id="y2" name="y2">
+<br>
+<label for="fill">Fill squares</label>
+<input type="checkbox" id="fill" name="fill">
+<br>
+<label for="color">Color: </label>
+<input type="text" id="color" name="color">
+<br>
+<button onclick="drawShapes()">Draw</button>
+<br>
+<canvas id="myCanvas" width="500" height="500"></canvas>
+
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    function drawSquare(x1, y1, x2, y2, color, fill) {
+        var width = Math.abs(x2 - x1);
+        var height = Math.abs(y2 - y1);
+        var left = Math.min(x1, x2);
+        var top = Math.min(y1, y2);
+
+        ctx.beginPath();
+        ctx.rect(left, top, width, height);
+        if (fill) {
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.closePath();
+
+        // Drawing circles
+        ctx.beginPath();
+        ctx.arc(left + width / 2, top + height / 2, Math.sqrt(width ** 2 + height ** 2) / 2, 0, 2 * Math.PI);
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function drawShapes() {
+        var x1 = parseInt(document.getElementById('x1').value);
+        var y1 = parseInt(document.getElementById('y1').value);
+        var x2 = parseInt(document.getElementById('x2').value);
+        var y2 = parseInt(document.getElementById('y2').value);
+        var color = document.getElementById('color').value;
+        var fill = document.getElementById('fill').checked;
+
+        if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+            alert('Invalid input. Please enter valid coordinates.');
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawSquare(x1, y1, x2, y2, color, fill);
+    }
+</script>
 </body>
 </html>
