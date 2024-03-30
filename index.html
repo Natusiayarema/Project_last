@@ -1,92 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Малювання квадратів та кол</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
 <body>
-<canvas id="myCanvas" width="600" height="400"></canvas>
-<br>
-<label for="coordinates">Координати квадратів (x1 y1 x2 y2, x1 y1 x2 y2, ...):</label>
-<input type="text" id="coordinates">
-<br>
-<label for="fillStyle">Колір заливки:</label>
-<input type="text" id="fillStyle">
-<button onclick="processInput()">Малювати</button>
 
-<script>
-// Отримуємо canvas та його контекст
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+    <p id='text'>ЧИТАННЯ КНИГ (план) 2024</p>
+    <div>
+        <button onclick="changeCSS()" id="btn">Change style!</button>
+    </div>
+   
+    <br>
 
-// Визначаємо розміри canvas
-var width = canvas.width;
-var height = canvas.height;
+    <section id="promotions" class="promotions">
+        <div class="promotions-container container">
+          <div class="promotions__item">
+            <div class="promotions__img-container">
+              <img class="promotions__item-img" src="img/12345.jpg" alt="book" />
+            </div>
+               
+      </section> 
+    
+        <div class="array">
+        <fieldset>
+            <legend align="center"> Відомості про читача </legend>
+            <input value="Name" type="text" data-form="ПІБ" class="text-data arr" name="fio" placeholder="Введіть ПІБ">
+            <input value="+380-00-000-0000" type="phone" data-form="Номер телефону" class="arr" name="phone" placeholder="+380-00-000-0000">
+            <input value="2020-02-02" type="date" data-form="Дата народження" class="arr" name="birthday">
+            <input value="nataliia.p.yarema@lpnu.ua" type="email" data-form="Електронна пошта" class="arr" placeholder="email@softserveinc.com"
+                name="email">
+            
+        </fieldset>
 
-// Функція для малювання системи координат
-function drawAxes() {
-    // Встановлюємо початкові параметри для системи координат
-    var centerX = width / 2;
-    var centerY = height / 2;
-    var unit = 50; // довжина одиничного відрізка
+        <ul id="list">
+            <li>1 Наталія Ярема "Дочекатися Божих птахів"</li>
+            <li>2 Василь Стефаник "Камінний Хрест"</li>
+            <li>3 Юрій Грешко "Світло в пітьмі сяє"</li>
+            <li>4 Юрій Винничук "Танго Смерті"</li>
+            <li>5 Оксана Кузів "Мереживо долі"</li>
+            <li>6 Сара Джіо "Ожинова зима" </li>
+            <li>7 Оксана Кузів "Адамцьо"</li>
+            <li>8 Віктор Крупка "Сон Це"</li>
+            <li>9 Ліна Костенко "Річка Геракліта"</li>
+            <li>10 Андрій Кокотюха "Чорний ліс"</li>
+            <li>11 Володимир Лис "В'язні зеленої дачі"</li>
+            <li>12 Таня Пянкова "Чужі гріхи</li>
 
-    // Малюємо осі координат
-    ctx.beginPath();
-    ctx.moveTo(centerX, 0);
-    ctx.lineTo(centerX, height);
-    ctx.moveTo(0, centerY);
-    ctx.lineTo(width, centerY);
-    ctx.strokeStyle = "#000"; // колір осей
-    ctx.stroke();
+        </ul>
 
-    // Позначаємо початок координат
-    ctx.font = "10px Arial";
-    ctx.fillText("(0,0)", centerX + 5, centerY - 5);
+        <br>
+      
+        <br>
+        <h1>ПРОЧИТАНІ КНИГИ</h1>
+        <select id="dropdown">
+            <option value="option1">Наталія Ярема "Дочекатися Божих птахів"</option>
+            <option value="option2">Василь Стефаник "Камінний Хрест"</option>
+            <option value="option3">Юрій Грешко "Світло в пітьмі сяє</option>
+            <option value="option4">Юрій Винничук "Танго Смерті"</option>
+            <option value="option5">Оксана Кузів "Мереживо долі"</option>
+            <option value="option1">Сара Джіо "Ожинова зима"</option>
+            <option value="option2">Оксана Кузів "Адамцьо"</option>
+            <option value="option3">Віктор Крупка "Сон Це"</option>
+            <option value="option4">Ліна Костенко "Річка Геракліта"</option>
+            <option value="option5">Андрій Кокотюха "Чорний ліс"</option>
+            <option value="option4">Володимир Лис "В'язні зеленої дачі"</option>
+            <option value="option5">Таня Пянкова "Чужі гріхи"</option>
+            <option value="option1">Леся Українка "Лісова пісня"</option>
+        </select>
+        <button id="deleteButton">Видалити вибраний елемент</button>
 
-    // Позначаємо одиничний відрізок
-    ctx.fillText("1", centerX + unit, centerY - 5);
-}
 
-// Функція для малювання квадрата та описаного кола
-function drawSquareAndCircle(x1, y1, x2, y2, fillStyle) {
-    // Малюємо квадрат
-    ctx.fillStyle = fillStyle;
-    ctx.fillRect(x1, y1, x2 - x1, y2 - y1);
+        <div class="out"></div>
+    </div>
+    
+    <section id="promotions" class="promotions">
+        <div class="promotions-container container">
+          <div class="promotions__item">
+            <div class="promotions__img-container">
+              <img class="promotions__item-img" src="img/123.jpg" alt="book" />
+            </div>
+               
+      </section> 
+      <section id="promotions" class="promotions">
+        <div class="promotions-container container">
+          <div class="promotions__item">
+            <div class="promotions__img-container">
+              <img class="promotions__item-img" src="img/456.png" alt="book" />
+            </div>
+               
+      </section> 
 
-    // Знаходимо координати центра та радіус описаного кола
-    var centerX = (x1 + x2) / 2;
-    var centerY = (y1 + y2) / 2;
-    var radius = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) / 2;
+    </section> 
+    <section id="promotions" class="promotions">
+      <div class="promotions-container container">
+        <div class="promotions__item">
+          <div class="promotions__img-container">
+            <img class="promotions__item-img" src="img/789.jpg" alt="book" />
+          </div>
+             
+    </section> 
+    
 
-    // Малюємо описане коло
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "#000"; // колір описаного кола
-    ctx.stroke();
-}
 
-// Функція для обробки введених координат та малювання квадратів з описаними колами
-function processInput() {
-    var input = document.getElementById("coordinates").value;
-    var coords = input.split(" ");
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+   
 
-    // Очищаємо canvas перед кожним малюванням
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Малюємо систему координат
-    drawAxes();
-
-    for (var i = 0; i < coords.length; i += 4) {
-        var x1 = parseFloat(coords[i]);
-        var y1 = parseFloat(coords[i + 1]);
-        var x2 = parseFloat(coords[i + 2]);
-        var y2 = parseFloat(coords[i + 3]);
-
-        drawSquareAndCircle(x1, y1, x2, y2, document.getElementById("fillStyle").value);
-    }
-}
-</script>
 
 </body>
+
 </html>
