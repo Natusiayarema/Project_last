@@ -4,3 +4,4 @@ function changeCSS() {
     textElement.style.fontSize = "60px";
     textElement.style.fontFamily = "Comic Sans MS";
   }
+
